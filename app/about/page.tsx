@@ -1,8 +1,10 @@
-import React from 'react'
+import type { Metadata } from "next";
 
-type Props = {}
+export const metadata: Metadata = {
+  title: 'About'
+}
 
-export default function Page({}: Props) {
+export default function AboutPage() {
   return (
       <>
         <h2 className="text-xl font-medium mt-6 border-b border-black phone:w-7/12 phone:text-lg">Origin Story of Japanese pro wrestling &#40;<i>puroresu</i>&#41;</h2>

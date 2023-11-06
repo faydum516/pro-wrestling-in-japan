@@ -20,19 +20,16 @@ export default async function PuroresuEmbodiment() {
     const IWGPWorldChampionWithMostReignsData: Promise<ChampionWithMostReigns[]> = getIWGPWorldChampionWithMostReigns();
     const longestReigningIWGPWorldChampionData: Promise<LongestReigningChampion[]> = getLongestReigningIWGPWorldChampion();
 
-    const IWGPChampions = await IWGPChampionsData;
-    const IWGPChampionWithMostReigns = await IWGPChampionWithMostReignsData;
-    const IWGPWorldChampionWithMostReigns = await IWGPWorldChampionWithMostReignsData;
-    const longestReigningIWGPWorldChampion = await longestReigningIWGPWorldChampionData;
+    const [IWGPChampions, IWGPChampionWithMostReigns, IWGPWorldChampionWithMostReigns, longestReigningIWGPWorldChampion] = await Promise.all([
+        IWGPChampionsData, IWGPChampionWithMostReignsData, IWGPWorldChampionWithMostReignsData, longestReigningIWGPWorldChampionData
+    ]);
 
     // Pro Wrestling NOAH
     const GHCChampionsData: Promise<Champion[]> = getGHCChampions();
     const GHCChampionWithMostReignsData: Promise<ChampionWithMostReigns[]> = getGHCChampionWithMostReigns();
     const longestReigningGHCChampionData: Promise<LongestReigningChampion[]> = getLongestReigningGHCChampion();
 
-    const GHCChampions = await GHCChampionsData;
-    const GHCChampionWithMostReigns = await GHCChampionWithMostReignsData;
-    const longestReigningGHCChampion = await longestReigningGHCChampionData;
+    const [GHCChampions, GHCChampionWithMostReigns, longestReigningGHCChampion] = await Promise.all([GHCChampionsData, GHCChampionWithMostReignsData, longestReigningGHCChampionData]);
 
     // All Japan Pro Wrestling
     const AJPWChampionsData: Promise<Champion[]> = getAJPWChampions();
@@ -40,10 +37,9 @@ export default async function PuroresuEmbodiment() {
     const AJPWChampionWithMostDefensesData: Promise<ChampionWithMostDefenses[]> = getAJPWChampionWithMostDefenses();
     const AJPWChampionWithMostCombinedDefensesData: Promise<ChampionWithMostCombinedDefenses[]> = getAJPWChampionWithMostCombinedDefenses();
 
-    const AJPWChampions = await AJPWChampionsData;
-    const AJPWChampionWithMostReigns = await AJPWChampionWithMostReignsData;
-    const AJPWChampionWithMostDefenses = await AJPWChampionWithMostDefensesData;
-    const AJPWChampionWithMostCombinedDefenses = await AJPWChampionWithMostCombinedDefensesData;
+    const [AJPWChampions, AJPWChampionWithMostReigns, AJPWChampionWithMostDefenses, AJPWChampionWithMostCombinedDefenses] = await Promise.all([
+        AJPWChampionsData, AJPWChampionWithMostReignsData, AJPWChampionWithMostDefensesData, AJPWChampionWithMostCombinedDefensesData
+    ]);
 
     // Triple World Champions
     const tripleWorldChampionsData: Promise<TripleWorldChampion[]> = getTripleChampions();

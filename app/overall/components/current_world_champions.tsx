@@ -14,9 +14,7 @@ export default async function CurrentWorldChampions() {
     const GHCChampionsData: Promise<Champion[]> = getGHCChampions();
     const AJPWChampionsData: Promise<Champion[]> = getAJPWChampions();
 
-    const IWGPChampions = await IWGPChampionsData;
-    const GHCChampions = await GHCChampionsData;
-    const AJPWChampions = await AJPWChampionsData;
+    const [IWGPChampions, GHCChampions, AJPWChampions] = await Promise.all([IWGPChampionsData, GHCChampionsData, AJPWChampionsData]);
 
     const section = (
         <section className="flex justify-center items-center flex-col pb-6">

@@ -16,14 +16,13 @@ export default async function TripleWorldChampions() {
     const GHCChampionsData: Promise<Champion[]> = getGHCChampions();
     const AJPWChampionsData: Promise<Champion[]> = getAJPWChampions();
 
-    const tripleWorldChampions = await tripleWorldChampionsData;
-    const fastestChampion = await fastestChampionData;
-    const youngestChampion = await youngestChampionData;
-    const IWGPChampions = await IWGPChampionsData;
-    const IWGPWorldChampions = await IWGPWorldChampionsData;
-    const GHCChampions = await GHCChampionsData;
-    const AJPWChampions = await AJPWChampionsData;
-
+    const [tripleWorldChampions, fastestChampion, 
+        youngestChampion, IWGPChampions,
+        IWGPWorldChampions, GHCChampions, AJPWChampions] = await Promise.all([
+            tripleWorldChampionsData, fastestChampionData,
+            youngestChampionData, IWGPChampionsData,
+            IWGPWorldChampionsData, GHCChampionsData, AJPWChampionsData
+        ]);
 
     // Fastest Time To Achieve The Feat
     const fastestTime = `${fastestChampion[0].Years} years${fastestChampion[0].Months > 1 && fastestChampion[0].Days > 1 ? `, ${fastestChampion[0].Months} months and ${fastestChampion[0].Days} days` : 

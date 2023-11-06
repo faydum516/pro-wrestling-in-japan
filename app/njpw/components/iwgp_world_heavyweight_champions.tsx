@@ -25,20 +25,19 @@ export default async function IWGPWorldHeavyweightChampions() {
     const championWithMostDefensesData: Promise<ChampionWithMostDefenses[]> = getChampionWithMostDefenses();
     const championWithMostCombinedDefensesData: Promise<ChampionWithMostCombinedDefenses[]> = getChampionWithMostCombinedDefenses();
 
-    const champions = await championsData;
-    const championsByReign = await championsByReignData;
-    const longestReigningChampion = await longestReigningChampionData;  
-    const championWithMostReigns = await championWithMostReignsData;
-    const youngestChampion = await youngestChampionData;
-    const oldestChampion = await oldestChampionData;
-    const championWithMostDefenses = await championWithMostDefensesData;
-    const championWithMostCombinedDefenses = await championWithMostCombinedDefensesData;
+    const [champions, championsByReign, 
+        longestReigningChampion, championWithMostReigns, 
+        youngestChampion, oldestChampion, championWithMostDefenses, 
+        championWithMostCombinedDefenses] = await Promise.all([
+        championsData, championsByReignData, longestReigningChampionData, 
+        championWithMostReignsData, youngestChampionData, oldestChampionData, 
+        championWithMostDefensesData, championWithMostCombinedDefensesData]);
 
     // Championship Belt
     const championship = "IWGP World Heavyweight Championship";
 
     // Current champion
-    const currentChampion =  championsByReign[championsByReign.length - 1].NumOfDays.toString().includes('+') ?
+    const currentChampion =  championsByReign[championsByReign.length - 1].Champion !== "Vacated" ?
         `${championsByReign[championsByReign.length - 1].Champion} is the current champion.` : 
         "Nobody is holding the championship because it has been vacated";
 
